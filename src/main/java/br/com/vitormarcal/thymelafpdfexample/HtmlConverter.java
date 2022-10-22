@@ -1,7 +1,5 @@
 package br.com.vitormarcal.thymelafpdfexample;
 
-import br.com.vitormarcal.thymelafpdfexample.DadoDeclaracao;
-import com.lowagie.text.DocumentException;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -10,7 +8,6 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class HtmlConverter {
