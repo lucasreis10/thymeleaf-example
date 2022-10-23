@@ -2,8 +2,7 @@ package br.com.vitormarcal.thymelafpdfexample.pdf;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.zip.GZIPOutputStream;
 
 public class ZipUtil {
@@ -13,18 +12,17 @@ public class ZipUtil {
             return str;
         }
 
-        GZIPOutputStream gzip;
-        ByteArrayOutputStream retorno = new ByteArrayOutputStream();
+        ByteArrayOutputStream byteArrayOutput = new ByteArrayOutputStream();
 
-        gzip = getGzipOutputStream(retorno);
+        GZIPOutputStream gzip = gerarZip(byteArrayOutput);
         escreverEmArquivo(str, gzip);
         closeZipOutputStream(gzip);
 
-        return coverterByteArrayParaString(retorno);
+        return new String(gerarByteArray(byteArrayOutput));
     }
 
-    private static String coverterByteArrayParaString(ByteArrayOutputStream out) {
-        return out.toString(StandardCharsets.ISO_8859_1);
+    private static byte[] gerarByteArray(ByteArrayOutputStream out) {
+        return Base64.getEncoder().encode(out.toByteArray());
     }
 
     private static void closeZipOutputStream(GZIPOutputStream gzip) {
@@ -43,7 +41,7 @@ public class ZipUtil {
         }
     }
 
-    private static GZIPOutputStream getGzipOutputStream(ByteArrayOutputStream out) {
+    private static GZIPOutputStream gerarZip(ByteArrayOutputStream out) {
         GZIPOutputStream gzip;
         try {
             gzip = new GZIPOutputStream(out);
