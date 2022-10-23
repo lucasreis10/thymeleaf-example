@@ -1,6 +1,5 @@
 package br.com.vitormarcal.thymelafpdfexample.pdf;
 
-import org.bouncycastle.util.encoders.Base64;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -8,6 +7,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Base64;
 
 public class BuilderPDF {
 
@@ -73,7 +73,7 @@ public class BuilderPDF {
     }
 
     private byte[] encode(byte[] template) {
-       return Base64.encode(template);
+       return Base64.getEncoder().encode(template);
     }
 
     private String getHtml() {
