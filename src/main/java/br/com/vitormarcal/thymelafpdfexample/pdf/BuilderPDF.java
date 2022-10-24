@@ -58,6 +58,10 @@ public class BuilderPDF {
         return retorno;
     }
 
+    public String buildHtml() {
+        return getHtml();
+    }
+
     private byte[] gerarPdf() {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
