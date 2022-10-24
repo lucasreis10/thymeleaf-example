@@ -3,11 +3,9 @@ package br.com.vitormarcal.thymelafpdfexample.pdf;
 import br.com.vitormarcal.thymelafpdfexample.DadoDeclaracao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.thymeleaf.context.Context;
 
 import java.time.LocalDate;
-import java.util.Base64;
 
 public class BuilderPDFTest {
 
@@ -39,6 +37,7 @@ public class BuilderPDFTest {
     void dadoUmArquivoHtml_quandoBuilderEhExecutado_entaoRetornaByteArray() {
         // given
         final var context = new Context();
+        final var tagMetaUtf8 = "<meta charset=\"UTF-8\" />";
         final var cpfEsperado = "000.000.00-00";
         final var nomeEsperado = "Jon Snow";
         final var srcImageEsperado = "https://picsum.photos/id/237/200/300";
@@ -59,6 +58,7 @@ public class BuilderPDFTest {
         Assertions.assertTrue(html.contains(srcImageEsperado));
         Assertions.assertTrue(html.contains(nomeEsperado));
         Assertions.assertTrue(html.contains(cpfEsperado));
+        Assertions.assertTrue(html.contains(tagMetaUtf8));
     }
 
 
